@@ -9,6 +9,4 @@ public interface LoginService {
     int addLogin(Login login);
     // 检验用户是否存在
     Login findLoginById(Long id);
-
-    int count();
 }

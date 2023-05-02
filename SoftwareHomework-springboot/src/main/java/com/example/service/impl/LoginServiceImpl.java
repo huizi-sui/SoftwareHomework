@@ -13,29 +13,22 @@ public class LoginServiceImpl implements LoginService {
     private LoginMapper loginMapper;
     @Override
     public int addLogin(Login login) {
-        // Login existLogin = findLoginById(login.getId());
-        // if(existLogin != null) {
-        //     return -1;
-        // }
-/*        long id = loginMapper.count() + StaticValue.ID_INIT;
+        Login existLogin = findLoginById(login.getId());
+        if(existLogin != null) {
+            return -1;
+        }
+        long id = loginMapper.count() + StaticValue.ID_INIT;
         login.setId(id);
         try {
-            return loginMapper.insertLogin(login);
+            return loginMapper.insert(login);
         }catch (Exception e) {
             return -1;
-        }*/
-        return -1;
+        }
     }
 
     @Override
     public Login findLoginById(Long id) {
-        //return loginMapper.selectLoginById(id);
-        return null;
+        return loginMapper.selectLoginById(id);
     }
 
-    @Override
-    public int count() {
-        //return loginMapper.count();
-        return 1;
-    }
 }

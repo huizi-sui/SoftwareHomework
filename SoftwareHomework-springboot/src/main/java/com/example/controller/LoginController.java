@@ -1,12 +1,12 @@
 package com.example.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.Unit.SendMessage;
+import com.example.Unit.StaticValue;
 import com.example.entity.Login;
 import com.example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @RestController
 public class LoginController {
@@ -26,35 +26,30 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/findLoginById", method = RequestMethod.GET)
-    public String findLoginById(@RequestBody Map<String, Long> map) {
-        Long id = map.get("id");
+    public String findLoginById(long id) {
         Login login = loginService.findLoginById(id);
-        JSONObject result = new JSONObject();
-        JSONObject data = new JSONObject();
+        int code;
         if(login == null) {
-            result.put("code", 404);
+            code = StaticValue.ERROR_CODE;
         } else {
-            result.put("code", 200);
+            code = StaticValue.ACCPET_CODE;
         }
-        data.put("login", login);
-        result.put("data", data);
-        return result.toJSONString();
+        return SendMessage.send(JSONObject.toJSONString(login), code, null);
     }
 
     @PostMapping(value = "/login")
-    public String login(@RequestBody Map<String, String> map) {
-        Login existLogin = loginService.findLoginById(Long.getLong(map.get("id")));
-        JSONObject result = new JSONObject();
-        JSONObject data = new JSONObject();
+    public String login(Login login) {
+        Login existLogin = loginService.findLoginById(login.getId());
+        int code;
+        String message = null;
         if(existLogin == null) {
-            result.put("code", 404);
-        } else if(existLogin.getPassword().equals(map.get("password"))) {
-            data.put("login", existLogin);
-            result.put("code", 200);
+            code = StaticValue.ERROR_CODE;
+        } else if(existLogin.getPassword().equals(login.getPassword())) {
+            code = StaticValue.ACCPET_CODE;
         } else {
-            result.put("code", 300);
+            code = StaticValue.WRONG_PASSWORD_CODE;
+            message = "密码输入错误";
         }
-        result.put("data", data);
-        return result.toJSONString();
+        return SendMessage.send(JSONObject.toJSONString(existLogin), code, message);
     }
 }
