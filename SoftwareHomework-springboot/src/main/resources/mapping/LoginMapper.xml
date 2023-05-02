@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.LoginMapper">
+    <select id="insert">
+        insert into login values (#{id}, #{rid}, #{email}, #{password});
+    </select>
+    <select id="selectLoginById" resultType="com.example.entity.Login">
+        select * from login where id = #{id}
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from login
+    </select>
+</mapper>

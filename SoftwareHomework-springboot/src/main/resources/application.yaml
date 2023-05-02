@@ -5,6 +5,10 @@ spring:
     username: root
     password: 123456
 
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.example.dao
+
 server:
   port: 8080
 
