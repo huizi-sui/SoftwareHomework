@@ -8,6 +8,8 @@ import com.example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class LoginController {
     @Autowired
@@ -51,5 +53,11 @@ public class LoginController {
             message = "密码输入错误";
         }
         return SendMessage.send(JSONObject.toJSONString(existLogin), code, message);
+    }
+
+    @GetMapping(value = "/findAllUser")
+    public String findAllUser() {
+        List<Login> loginList = loginService.findAllLogin();
+        return SendMessage.send(JSONObject.toJSONString(loginList), 200, null);
     }
 }
