@@ -7,10 +7,14 @@ import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 import lombok.ToString;
 
+/**
+ *   用户表
+ */
 @Table
 @Data
 @ToString
 public class Login extends BaseModel {
+    // studentId
     @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     private Long id;
     // 权限
