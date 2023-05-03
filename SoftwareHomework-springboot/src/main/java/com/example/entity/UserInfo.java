@@ -27,6 +27,10 @@ public class UserInfo {
     @Column(name = "sex", type = MySqlTypeConstant.VARCHAR, length = 10, defaultValue = "男")
     private String sex;
 
+    // 第几届学生
+    @Column(name = "level", type = MySqlTypeConstant.INT, defaultValue = "18")
+    private Integer level;
+
     // 预毕业日期
     @Column(name = "date", type = MySqlTypeConstant.DATE, defaultValue = "2023-06-22")
     private Date date;
