@@ -18,7 +18,7 @@ public class UserInfo {
     @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     private Long id;
 
-    @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15)
+    @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15, defaultValue = "待填写")
     private String name;
 
     @Column(name = "email", type = MySqlTypeConstant.VARCHAR, length = 20)

@@ -18,7 +18,7 @@ public class Login extends BaseModel {
     @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     private Long id;
     // 权限
-    @Column(name = "rid", type = MySqlTypeConstant.INT, defaultValue = "0")
+    @Column(name = "rid", type = MySqlTypeConstant.INT, defaultValue = "1")
     private Integer rid;
 
     @Column(name = "email", type = MySqlTypeConstant.VARCHAR, length = 20)
