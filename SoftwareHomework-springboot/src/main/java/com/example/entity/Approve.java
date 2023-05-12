@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.Id;
 import java.sql.Date;
 
 /**
@@ -20,11 +21,16 @@ import java.sql.Date;
 public class Approve {
     @Column(value = "id", type = MySqlTypeConstant.INT, isKey = true, isAutoIncrement = true)
     @ApiModelProperty("序号，自增")
+    @Id
     private Integer id;
 
     @Column(value = "student_id", type = MySqlTypeConstant.BIGINT)
     @ApiModelProperty("学号")
     private Long studentId;
+
+    @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15)
+    @ApiModelProperty(value = "学生姓名")
+    private String name;
 
     // 学院
     @Column(name = "college", type = MySqlTypeConstant.VARCHAR, length = 30, defaultValue = "软件学院")
@@ -36,7 +42,7 @@ public class Approve {
     private Date date;
 
     @Column(name = "status", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
-    @ApiModelProperty(value = "审核状态", notes = "默认为1，未审核；2是审核通过；3是审核退回")
+    @ApiModelProperty(value = "审核状态", notes = "默认为1，未审核；2是审核退回；3是审核通过")
     private Integer status;
 
     @Column(name = "approve_name", type = MySqlTypeConstant.VARCHAR, length = 15)

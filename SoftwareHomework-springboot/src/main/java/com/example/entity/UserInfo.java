@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.Id;
 import java.sql.Date;
 /**
  * 待确认信息表
@@ -20,6 +21,7 @@ public class UserInfo {
     // student id
     @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
+    @Id
     private Long id;
 
     @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15, defaultValue = "待填写")
@@ -55,7 +57,7 @@ public class UserInfo {
     private String major;
 
     // 学位审批结果
-    @Column(name = "approvalResult", type = MySqlTypeConstant.VARCHAR, length = 50, defaultValue = "暂未获得学位")
+    @Column(name = "approval_result", type = MySqlTypeConstant.VARCHAR, length = 50, defaultValue = "暂未获得学位")
     @ApiModelProperty(value = "学位审批结果", notes = "默认为暂未获得学位")
     private String approvalResult;
 }

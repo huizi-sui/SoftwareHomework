@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.Id;
+
 /**
  *   用户表
  */
@@ -20,6 +22,7 @@ public class Login extends BaseModel {
     // studentId
     @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
+    @Id
     private Long id;
     // 权限
     @Column(name = "rid", type = MySqlTypeConstant.INT, defaultValue = "1")

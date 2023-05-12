@@ -7,5 +7,11 @@ import java.util.List;
 
 @Transactional
 public interface SelfEvaluationService {
+
+    void insert(Long id);
+
+    boolean updateSelfEvaluation(SelfEvaluation selfEvaluation);
     List<SelfEvaluation> findAllSelfEvaluation();
+
+    SelfEvaluation findById(Long id);
 }

@@ -7,5 +7,9 @@ import java.util.List;
 
 @Transactional
 public interface BlindReviewResultService {
+
+    void update(BlindReviewResult blindReviewResult);
+
+    void insert(BlindReviewResult blindReviewResult);
     List<BlindReviewResult> findAllBlindReviewResult();
 }

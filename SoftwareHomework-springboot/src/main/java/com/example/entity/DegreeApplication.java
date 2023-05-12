@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.Id;
+
 /**
  *学位申请表
  */
@@ -18,6 +20,7 @@ import lombok.ToString;
 public class DegreeApplication {
     @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
+    @Id
     private Long id;
 
     @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15, defaultValue = "待填写")
@@ -48,4 +51,9 @@ public class DegreeApplication {
     @Column(name = "degree", type = MySqlTypeConstant.VARCHAR, length = 50, defaultValue = "专业硕士学位")
     @ApiModelProperty(value = "申请的学位")
     private String degree;
+
+    // 是否审批
+    @Column(name = "admin_is_agree", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "是否已经审批", notes = "1是未审批，2是已经审批")
+    private Integer adminIsAgree;
 }

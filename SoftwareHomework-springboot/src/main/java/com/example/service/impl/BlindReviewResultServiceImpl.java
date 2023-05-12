@@ -12,6 +12,21 @@ import java.util.List;
 public class BlindReviewResultServiceImpl implements BlindReviewResultService {
     @Autowired
     private BlindReviewResultMapper blindReviewResultMapper;
+
+    @Override
+    public void insert(BlindReviewResult blindReviewResult) {
+        blindReviewResultMapper.insert(blindReviewResult);
+    }
+    @Override
+    public void update(BlindReviewResult blindReviewResult) {
+        boolean exist = blindReviewResultMapper.existsWithPrimaryKey(blindReviewResult.getId());
+        if(!exist) {
+            insert(blindReviewResult);
+        } else {
+            blindReviewResultMapper.updateByPrimaryKey(blindReviewResult);
+        }
+    }
+
     @Override
     public List<BlindReviewResult> findAllBlindReviewResult() {
         return blindReviewResultMapper.selectAll();

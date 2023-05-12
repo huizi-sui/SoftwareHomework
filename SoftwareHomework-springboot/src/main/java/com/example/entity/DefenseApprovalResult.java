@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.Id;
+
 /**
  * 评阅答辩审批结果表
  * 答辩委员会成员（主席、三位委员）的姓名、职称、工作单位、是否是博导信息到评阅答辩审批表中进行查询
@@ -20,6 +22,7 @@ public class DefenseApprovalResult {
 
     @Column(value = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
+    @Id
     private Long id;
 
     @Column(value = "score1", type = MySqlTypeConstant.FLOAT)

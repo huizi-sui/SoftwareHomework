@@ -7,5 +7,11 @@ import java.util.List;
 
 @Transactional
 public interface DegreeApplicationService {
+
+    void insert(Long id);
+
+    void update(DegreeApplication degreeApplication) throws Exception;
     List<DegreeApplication> findAllDegreeApplication();
+
+    DegreeApplication findById(Long id);
 }

@@ -8,49 +8,39 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.Id;
+
 /**
- * 盲审查重结果表
+ * 盲审评阅总评
+ *
+ * 论文题目、论文关键字、论文摘要从论文预审表SelfEvaluation中查询
  */
 @Data
 @ToString
+@ApiModel("盲审评阅总评")
 @Table
-@ApiModel(value = "盲审查重结果表")
 public class BlindReviewResult {
-    @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
+    @Column(value = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
+    @Id
     private Long id;
 
-    @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15)
-    @ApiModelProperty(value = "姓名")
-    private String name;
+    @Column(name = "innovation", type = MySqlTypeConstant.VARCHAR, length = 300)
+    @ApiModelProperty(value = "论文创新点")
+    private String innovation;
 
-    // 论文题目
-    @Column(name = "title", type = MySqlTypeConstant.VARCHAR, length = 50)
-    @ApiModelProperty(value = "论文题目")
-    private String title;
-
-    // 论文查重百分比
-    @Column(name = "duplicateScore", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
-    @ApiModelProperty(value = "论文查重百分比")
-    private Float duplicateScore;
-
-    // 论文盲审评阅老师
-    @Column(name = "blindTeacher1", type = MySqlTypeConstant.VARCHAR, length = 20, defaultValue = "无")
-    @ApiModelProperty(value = "论文盲审评阅老师1")
-    private String blindTeacher1;
+    @Column(name = "comment", type = MySqlTypeConstant.VARCHAR, length = 300)
+    @ApiModelProperty(value = "评阅意见", notes = "不超过300字符")
+    private String comment;
 
     // 论文盲审分数
     @Column(name = "blindScore1", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
     @ApiModelProperty(value = "论文盲审分数1")
     private Float blindScore1;
 
-    // 论文盲审评阅老师
-    @Column(name = "blindTeacher2", type = MySqlTypeConstant.VARCHAR, length = 20, defaultValue = "无")
-    @ApiModelProperty(value = "论文盲审评阅老师2")
-    private String blindTeacher2;
-
     // 论文盲审分数
     @Column(name = "blindScore2", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
     @ApiModelProperty(value = "论文盲审分数2")
     private Float blindScore2;
+
 }

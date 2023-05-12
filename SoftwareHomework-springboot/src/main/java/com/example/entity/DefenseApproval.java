@@ -8,8 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
-import java.sql.Timestamp;
-
+import javax.persistence.Id;
+import java.sql.Date;
 /**
  * 评阅答辩审批表
  */
@@ -20,6 +20,7 @@ import java.sql.Timestamp;
 public class DefenseApproval {
     @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
+    @Id
     private Long id;
 
     @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15)
@@ -32,9 +33,9 @@ public class DefenseApproval {
     private String title;
 
     // 答辩时间
-    @Column(name = "defenseTime", type = MySqlTypeConstant.DATETIME)
+    @Column(name = "defense_time", type = MySqlTypeConstant.DATE)
     @ApiModelProperty(value = "答辩时间", notes = "格式为YYYY-MM-DD HH:mm:ss")
-    private Timestamp defenseTime;
+    private Date defenseTime;
 
     // 答辩委员会主席
     // 姓名
@@ -117,4 +118,9 @@ public class DefenseApproval {
     @Column(name = "member3_is_doctor", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
     @ApiModelProperty(value = "答辩委员会委员是否是博导", notes = "是则为2，不是为1，默认为1")
     private Integer member3IsDoctor;
+
+    // 管理员是否同意审批
+    @Column(name = "admin_is_agree", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "审批是否通过", notes = "是则为2，不是为1，默认为1")
+    private Integer adminIsAgree;
 }

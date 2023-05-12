@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.Id;
+
 /**
  * 自评论文预审表
  */
@@ -18,6 +20,7 @@ import lombok.ToString;
 public class SelfEvaluation {
     @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
+    @Id // 用于tk.mybatis
     private Long id;
 
     // 学生姓名
@@ -70,7 +73,7 @@ public class SelfEvaluation {
     private String summary;
 
     // 自我评价
-    @Column(name = "selfReview", type = MySqlTypeConstant.VARCHAR, length = 300)
+    @Column(name = "self_review", type = MySqlTypeConstant.VARCHAR, length = 300)
     @ApiModelProperty(value = "自我评价", notes = "不超过300字符")
     private String selfReview;
 

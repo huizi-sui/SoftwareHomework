@@ -8,28 +8,47 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import javax.persistence.Id;
+
 /**
- * 盲审评阅总评
- *
- * 论文题目、论文关键字、论文摘要从论文预审表SelfEvaluation中查询
+ * 盲审查重表
  */
 @Data
 @ToString
-@ApiModel("盲审评阅总评")
 @Table
+@ApiModel(value = "盲审查重结果表")
 public class BlindReview {
-    @Column(value = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
+    @Column(name = "id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
+    @Id
     private Long id;
 
-    @Column(name = "innovation", type = MySqlTypeConstant.VARCHAR, length = 300)
-    @ApiModelProperty(value = "论文创新点")
-    private String innovation;
+    @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15)
+    @ApiModelProperty(value = "姓名")
+    private String name;
 
-    @Column(name = "comment", type = MySqlTypeConstant.VARCHAR, length = 300)
-    @ApiModelProperty(value = "评阅意见", notes = "不超过300字符")
-    private String comment;
+    // 论文题目
+    @Column(name = "title", type = MySqlTypeConstant.VARCHAR, length = 50)
+    @ApiModelProperty(value = "论文题目")
+    private String title;
 
+    // 论文查重百分比
+    @Column(name = "duplicate_score", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
+    @ApiModelProperty(value = "论文查重百分比")
+    private Float duplicateScore;
 
+    // 论文盲审评阅老师
+    @Column(name = "blind_teacher1", type = MySqlTypeConstant.VARCHAR, length = 20, defaultValue = "无")
+    @ApiModelProperty(value = "论文盲审评阅老师1")
+    private String blindTeacher1;
 
+    // 论文盲审评阅老师
+    @Column(name = "blind_teacher2", type = MySqlTypeConstant.VARCHAR, length = 20, defaultValue = "无")
+    @ApiModelProperty(value = "论文盲审评阅老师2")
+    private String blindTeacher2;
+
+    // 是否已经上传论文
+    @Column(name = "status", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "是否已经上传论文", notes = "1代表未上传；2代表已经上传")
+    private Integer status;
 }
