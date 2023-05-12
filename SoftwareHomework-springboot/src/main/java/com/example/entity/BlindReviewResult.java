@@ -20,6 +20,10 @@ public class BlindReviewResult {
     @ApiModelProperty(value = "学号")
     private Long id;
 
+    @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15)
+    @ApiModelProperty(value = "姓名")
+    private String name;
+
     // 论文题目
     @Column(name = "title", type = MySqlTypeConstant.VARCHAR, length = 50)
     @ApiModelProperty(value = "论文题目")

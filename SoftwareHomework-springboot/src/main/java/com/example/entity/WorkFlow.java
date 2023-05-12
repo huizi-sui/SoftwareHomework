@@ -32,9 +32,10 @@ public class WorkFlow {
     private Integer confirmInfo;
 
     // 个人信息核对、课程审核
-    @Column(name = "review", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
-    @ApiModelProperty(value = "个人信息核对、课程审核", notes = "已完成为2，未完成为1，默认未完成")
-    private Integer review;
+    // 暂时不关注
+    // @Column(name = "review", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    // @ApiModelProperty(value = "个人信息核对、课程审核", notes = "已完成为2，未完成为1，默认未完成")
+    // private Integer review;
 
     // 自评论文预审
     @Column(name = "selfEvaluation", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
@@ -60,6 +61,11 @@ public class WorkFlow {
     @Column(name = "allowDownload", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
     @ApiModelProperty(value = "开放答辩材料下载", notes = "已完成为2，未完成为1，默认未完成")
     private Integer allowDownload;
+
+    // 盲审评阅总评
+    @Column(name = "blind_review", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "盲审评阅总评", notes = "已完成为2，未完成为1，默认未完成")
+    private Integer blindReview;
 
     // 答辩成绩提交
     @Column(name = "scoreSubmission", type = MySqlTypeConstant.TINYINT, defaultValue = "1")

@@ -22,23 +22,99 @@ public class DefenseApproval {
     @ApiModelProperty(value = "学号")
     private Long id;
 
-    // 评阅
-    @Column(name = "review", type = MySqlTypeConstant.VARCHAR, length = 300)
-    @ApiModelProperty(value = "评阅内容")
-    private String review;
+    @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15)
+    @ApiModelProperty(value = "姓名")
+    private String name;
+
+    // 论文题目
+    @Column(name = "title", type = MySqlTypeConstant.VARCHAR, length = 100)
+    @ApiModelProperty(value = "论文题目")
+    private String title;
 
     // 答辩时间
     @Column(name = "defenseTime", type = MySqlTypeConstant.DATETIME)
     @ApiModelProperty(value = "答辩时间", notes = "格式为YYYY-MM-DD HH:mm:ss")
     private Timestamp defenseTime;
 
+    // 答辩委员会主席
+    // 姓名
+    @Column(name = "chairman_name", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "答辩委员会主席姓名")
+    private String chairmanName;
+
+    // 职称
+    @Column(name = "chairman_title", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "答辩委员会主席职称")
+    private String chairmanTitle;
+
     // 工作单位
-    @Column(name = "employer", type = MySqlTypeConstant.VARCHAR, length = 100)
-    @ApiModelProperty(value = "工作单位")
-    private String employer;
+    @Column(name = "chairman_employer", type = MySqlTypeConstant.VARCHAR, length = 100)
+    @ApiModelProperty(value = "答辩委员会主席工作单位")
+    private String chairman_employer;
 
     // 是否是博导
-    @Column(name = "isDoctor", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
-    @ApiModelProperty(value = "是否是博导", notes = "是则为2，不是为1，默认为1")
-    private Integer isDoctor;
+    @Column(name = "chairman_is_doctor", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "答辩委员会主席是否是博导", notes = "是则为2，不是为1，默认为1")
+    private Integer chairmanIsDoctor;
+
+    // 答辩委员会委员，三个，1， 2 ，3
+    // 1
+    @Column(name = "member1_name", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "答辩委员会委员姓名")
+    private String member1Name;
+
+    // 职称
+    @Column(name = "member1_title", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "答辩委员会委员职称")
+    private String member1Title;
+
+    // 工作单位
+    @Column(name = "member1_employer", type = MySqlTypeConstant.VARCHAR, length = 100)
+    @ApiModelProperty(value = "答辩委员会委员工作单位")
+    private String member1_employer;
+
+    // 是否是博导
+    @Column(name = "member1_is_doctor", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "答辩委员会委员是否是博导", notes = "是则为2，不是为1，默认为1")
+    private Integer member1IsDoctor;
+
+    // 2
+    @Column(name = "member2_name", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "答辩委员会委员姓名")
+    private String member2Name;
+
+    // 职称
+    @Column(name = "member2_title", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "答辩委员会委员职称")
+    private String member2Title;
+
+    // 工作单位
+    @Column(name = "member2_employer", type = MySqlTypeConstant.VARCHAR, length = 100)
+    @ApiModelProperty(value = "答辩委员会委员工作单位")
+    private String member2_employer;
+
+    // 是否是博导
+    @Column(name = "member2_is_doctor", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "答辩委员会委员是否是博导", notes = "是则为2，不是为1，默认为1")
+    private Integer member2IsDoctor;
+
+    // 3
+    @Column(name = "member3_name", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "答辩委员会委员姓名")
+    private String member3Name;
+
+    // 职称
+    @Column(name = "member3_title", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "答辩委员会委员职称")
+    private String member3Title;
+
+    // 工作单位
+    @Column(name = "member3_employer", type = MySqlTypeConstant.VARCHAR, length = 100)
+    @ApiModelProperty(value = "答辩委员会委员工作单位")
+    private String member3_employer;
+
+    // 是否是博导
+    @Column(name = "member3_is_doctor", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "答辩委员会委员是否是博导", notes = "是则为2，不是为1，默认为1")
+    private Integer member3IsDoctor;
 }

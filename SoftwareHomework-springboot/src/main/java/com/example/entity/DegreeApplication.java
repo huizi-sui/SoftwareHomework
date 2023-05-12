@@ -20,6 +20,10 @@ public class DegreeApplication {
     @ApiModelProperty(value = "学号")
     private Long id;
 
+    @Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 15, defaultValue = "待填写")
+    @ApiModelProperty(value = "姓名", notes = "默认值为待填写")
+    private String name;
+
     // 学院
     @Column(name = "college", type = MySqlTypeConstant.VARCHAR, length = 30, defaultValue = "软件学院")
     @ApiModelProperty(value = "学院")
@@ -27,8 +31,18 @@ public class DegreeApplication {
 
     // 专业
     @Column(name = "major", type = MySqlTypeConstant.VARCHAR, length = 20, defaultValue = "软件工程专业")
-    @ApiModelProperty(value = "专业")
+    @ApiModelProperty(value = "专业学位类别")
     private String major;
+
+    // 导师姓名
+    @Column(name = "boss_name", type = MySqlTypeConstant.VARCHAR, length = 10)
+    @ApiModelProperty(value = "导师姓名")
+    private String bossName;
+
+    // 导师职称
+    @Column(name = "boss_title", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @ApiModelProperty(value = "导师职称")
+    private String bossTitle;
 
     // 申请的学位
     @Column(name = "degree", type = MySqlTypeConstant.VARCHAR, length = 50, defaultValue = "专业硕士学位")

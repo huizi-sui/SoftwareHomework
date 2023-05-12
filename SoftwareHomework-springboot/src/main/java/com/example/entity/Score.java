@@ -10,6 +10,7 @@ import lombok.ToString;
 
 /**
  * 成绩表（盲审，答辩。。。）
+ * 暂时用不上
  */
 @Data
 @ToString
