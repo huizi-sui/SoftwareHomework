@@ -6,7 +6,9 @@ import com.example.Unit.SendMessage;
 import com.example.Unit.StaticValue;
 import com.example.entity.BlindReview;
 import com.example.entity.BlindReviewResult;
+import com.example.service.ApproveService;
 import com.example.service.BlindReviewResultService;
+import com.example.service.BlindReviewService;
 import com.example.service.WorkFlowService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,13 +29,18 @@ public class BlindReviewResultController {
     private BlindReviewResultService blindReviewResultService;
     @Autowired
     private WorkFlowService workFlowService;
+    @Autowired
+    private BlindReviewService blindReviewService;
+    @Autowired
+    private ApproveService approveService;
 
     @PostMapping(value = "/updateBlindReviewResult")
     @ApiOperation(value = "管理员提交盲审评阅总评信息", httpMethod = "POST")
-    public JSONObject updateBlindReviewResult(@RequestBody BlindReviewResult blindReviewResult) {
+    public JSONObject updateBlindReviewResult(@RequestBody BlindReviewResult blindReviewResult, @RequestBody String approvalName, @RequestBody Integer approvalId) {
         try {
             // 盲审已提交后才有盲审评阅总评，因此无需进行工作流程判断，只需更新
             blindReviewResultService.update(blindReviewResult);
+            approveService.update(blindReviewResult, approvalName, approvalId);
             workFlowService.assuredBlindReviewResult(blindReviewResult.getId());
             return SendMessage.send(null, StaticValue.ACCPET_CODE, "操作成功");
         }catch (Exception e) {

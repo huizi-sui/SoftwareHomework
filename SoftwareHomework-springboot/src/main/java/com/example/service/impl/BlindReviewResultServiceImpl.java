@@ -15,6 +15,7 @@ public class BlindReviewResultServiceImpl implements BlindReviewResultService {
 
     @Override
     public void insert(BlindReviewResult blindReviewResult) {
+        blindReviewResult.setApprovalStatus(1);
         blindReviewResultMapper.insert(blindReviewResult);
     }
     @Override

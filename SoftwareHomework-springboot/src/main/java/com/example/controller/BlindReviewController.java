@@ -48,7 +48,6 @@ public class BlindReviewController {
             if(!exist) {
                 throw new Exception("前面操作未完成");
             }
-            System.out.println(blindReview);
             blindReviewService.update(blindReview);
             approveService.add(blindReview);
             result = workFlowService.assuredBlindReview(blindReview.getId());

@@ -49,4 +49,8 @@ public class Approve {
     @ApiModelProperty(value = "审批人")
     private String approveName;
 
+    @Column(name = "category", type = MySqlTypeConstant.TINYINT)
+    @ApiModelProperty(value = "申请类型，1. 评阅审批答辩，2. 盲审审批，3. 学位申请")
+    private Integer category;
+
 }

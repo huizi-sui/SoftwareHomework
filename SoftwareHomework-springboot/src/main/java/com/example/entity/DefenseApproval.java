@@ -121,6 +121,6 @@ public class DefenseApproval {
 
     // 管理员是否同意审批
     @Column(name = "admin_is_agree", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
-    @ApiModelProperty(value = "审批是否通过", notes = "是则为2，不是为1，默认为1")
+    @ApiModelProperty(value = "审批是否通过", notes = "默认为1，为审批中，2是审批退回，3是审批通过")
     private Integer adminIsAgree;
 }

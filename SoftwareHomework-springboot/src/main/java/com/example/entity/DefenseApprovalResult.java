@@ -48,4 +48,8 @@ public class DefenseApprovalResult {
     @Column(value = "score", type = MySqlTypeConstant.FLOAT)
     @ApiModelProperty(value = "答辩成绩， 取平均值")
     private Float score;
+
+    @Column(value = "status", type = MySqlTypeConstant.TINYINT)
+    @ApiModelProperty(value = "审批状态", notes = "1代表审核中，2代表审核退回，3代表审核通过")
+    private Integer status;
 }

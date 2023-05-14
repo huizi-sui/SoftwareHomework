@@ -8,10 +8,7 @@ import com.example.entity.DefenseApproval;
 import com.example.service.ApproveService;
 import com.example.service.DefenseApprovalService;
 import com.example.service.WorkFlowService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,13 +53,13 @@ public class DefenseApprovalController {
 
     @PostMapping(value = "/agreeDefenseApproval")
     @ApiOperation(value = "管理员同意或不同意答辩申请")
-    public JSONObject agreeDefenseApproval(@RequestBody DefenseApproval defenseApproval, String approvalName) {
+    public JSONObject agreeDefenseApproval(@RequestBody DefenseApproval defenseApproval,@RequestBody String approvalName, @RequestBody Integer approvalId) {
         try {
-            approveService.update(defenseApproval, approvalName);
-            if(defenseApproval.getAdminIsAgree() == 2) {
-                defenseApprovalService.update(defenseApproval);
+            approveService.update(defenseApproval, approvalName, approvalId);
+            defenseApprovalService.update(defenseApproval);
+            if(defenseApproval.getAdminIsAgree() == 3) {
                 // 更新工作流程， 因为申请时已经判断前面都完成了，因此只需要更新就好
-                boolean result = workFlowService.assuredDefenseApprovalAndAllowDownload(defenseApproval.getId());
+                boolean result = workFlowService.assuredDefenseApproval(defenseApproval.getId());
                 if (!result) {
                     throw new Exception("确认盲审审核信息失败");
                 }

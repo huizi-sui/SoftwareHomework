@@ -52,7 +52,21 @@ public class DegreeApplicationController {
         }
     }
 
- /*   @GetMapping(value = "/findAllDegreeApplication")
+    @PostMapping(value = "/approvalDegreeApplication")
+    @ApiOperation(value = "管理员审批学位信息", httpMethod = "POST")
+    public JSONObject approvalDegreeApplication(@RequestBody DegreeApplication degreeApplication,@RequestBody String approvalName, @RequestBody Integer approvalId) {
+        try {
+            // 管理员审批，只需更新，无需检查
+            workFlowService.assuredApprovalResult(degreeApplication.getId());
+            approveService.update(degreeApplication, approvalName, approvalId);
+            degreeApplicationService.update(degreeApplication);
+            return SendMessage.send(null, StaticValue.ACCPET_CODE, "操作成功");
+        }catch (Exception e) {
+            return SendMessage.send(null, StaticValue.ERROR_CODE, e.getMessage());
+        }
+    }
+
+    /*   @GetMapping(value = "/findAllDegreeApplication")
     @ApiOperation(value = "获得所有学生学位申请信息", httpMethod = "GET")
     @ApiResponses({
             @ApiResponse(code = 404, message = "查询失败"),

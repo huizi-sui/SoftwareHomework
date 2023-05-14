@@ -7,9 +7,11 @@ import com.example.Unit.SendMessage;
 import com.example.Unit.StaticValue;
 import com.example.entity.Approve;
 import com.example.entity.DefenseApproval;
+import com.example.entity.DegreeApplication;
 import com.example.entity.SelfEvaluation;
 import com.example.service.ApproveService;
 import com.example.service.DefenseApprovalService;
+import com.example.service.DegreeApplicationService;
 import com.example.service.SelfEvaluationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +34,8 @@ public class ApprovalController {
     private DefenseApprovalService defenseApprovalService;
     @Autowired
     private SelfEvaluationService selfEvaluationService;
+    @Autowired
+    private DegreeApplicationService degreeApplicationService;
 
     @GetMapping(value = "/findAllApprove")
     @ApiOperation(value = "查询所有审批申请", httpMethod = "GET")
@@ -56,10 +60,10 @@ public class ApprovalController {
     }
 
     @GetMapping(value = "/approveStudent")
-    @ApiOperation(value = "审批学生的某一项")
+    @ApiOperation(value = "审批学生的某一项，通过operator表明审批的是什么，返回数据库中已存在的基础信息")
     public JSONObject approveStudent(@RequestParam Long id, @RequestParam int operator) {
         try {
-            if(operator == 1 || operator == 3) {
+            if(operator == 1 || operator == 4) {
                 // 评阅审批答辩、答辩成绩提交
                 DefenseApproval defenseApproval = defenseApprovalService.findById(id);
                 if(defenseApproval == null) {
@@ -77,8 +81,12 @@ public class ApprovalController {
                 map.put("keyWords", selfEvaluation.getKeyWords());
                 map.put("summary", selfEvaluation.getSummary());
                 return SendMessage.send(JSON.toJSON(map), StaticValue.ACCPET_CODE, "查询成功");
+            } else if(operator == 3) {
+                DegreeApplication degreeApplication = degreeApplicationService.findById(id);
+                return SendMessage.send(JSON.toJSON(degreeApplication), StaticValue.ACCPET_CODE, "查询成功");
             } else {
-                throw new Exception("没有此类审批");
+                    throw new Exception("没有此类审批");
+
             }
         }catch (Exception e) {
             return SendMessage.send(null, StaticValue.ERROR_CODE, e.getMessage());

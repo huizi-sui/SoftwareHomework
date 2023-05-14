@@ -20,15 +20,21 @@ public interface WorkFlowService {
     void insert(Long id);
     List<WorkFlow> findAllWorkFlow();
 
-    boolean assuredDefenseApprovalAndAllowDownload(Long id);
+    boolean assuredDefenseApproval(Long id);
 
     boolean findDefenseApprovalPreviewAssured(Long id);
 
     boolean assuredBlindReviewResult(Long id);
+
+    boolean assuredAllowDownload(Long id);
+
+    boolean assuredApprovalResult(Long id);
 
     boolean assuredDefenseApprovalResult(Long id);
 
     boolean findDegreeApplicationPreviewAssured(Long id);
 
     boolean assuredDegreeApplication(Long id);
+
+    WorkFlow findById(Long id);
 }

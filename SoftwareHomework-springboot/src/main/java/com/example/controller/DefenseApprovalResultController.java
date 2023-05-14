@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.Unit.SendMessage;
 import com.example.Unit.StaticValue;
 import com.example.entity.DefenseApprovalResult;
+import com.example.service.ApproveService;
 import com.example.service.DefenseApprovalResultService;
 import com.example.service.WorkFlowService;
 import io.swagger.annotations.Api;
@@ -20,12 +21,15 @@ public class DefenseApprovalResultController {
     private DefenseApprovalResultService defenseApprovalResultService;
     @Autowired
     private WorkFlowService workFlowService;
+    @Autowired
+    private ApproveService approveService;
 
     @PostMapping(value = "/updateDefenseApprovalResult")
     @ApiOperation(value = "管理员提交答辩成绩", httpMethod = "POST")
-    public JSONObject updateDefenseApprovalResult(@RequestBody DefenseApprovalResult defenseApprovalResult) {
+    public JSONObject updateDefenseApprovalResult(@RequestBody DefenseApprovalResult defenseApprovalResult, @RequestBody String approvalName, @RequestBody Integer approvalId) {
         try {
             defenseApprovalResultService.update(defenseApprovalResult);
+            approveService.update(defenseApprovalResult, approvalName, approvalId);
             boolean result = workFlowService.assuredDefenseApprovalResult(defenseApprovalResult.getId());
             if(!result) {
                 throw new Exception("更新工作流程信息失败");

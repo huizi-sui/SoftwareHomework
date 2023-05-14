@@ -1,9 +1,6 @@
 package com.example.service;
 
-import com.example.entity.Approve;
-import com.example.entity.BlindReview;
-import com.example.entity.DefenseApproval;
-import com.example.entity.DegreeApplication;
+import com.example.entity.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -16,7 +13,15 @@ public interface ApproveService {
 
     void add(BlindReview blindReview);
 
-    void update(DefenseApproval defenseApproval, String approvalName);
+    void add(Long id);
+
+    void update(DefenseApproval defenseApproval, String approvalName, Integer approvalId);
+
+    void update(DegreeApplication degreeApplication, String approvalName, Integer approvalId);
+
+    void update(DefenseApprovalResult defenseApprovalResult, String approvalName, Integer approvalId);
+
+    void update(BlindReviewResult blindReviewResult, String approvalName, Integer approvalId);
 
     List<Approve> findAll();
 
