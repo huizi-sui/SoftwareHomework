@@ -142,20 +142,21 @@ public class ApproveServiceImpl implements ApproveService {
     @Override
     public List<Approve> findSome(Approve approve) {
         Example example = new Example(Approve.class);
+        Example.Criteria criteria = example.createCriteria();
         if(approve.getStudentId() != null) {
-            example.createCriteria().andEqualTo("student_id", approve.getStudentId());
+            criteria.andEqualTo("student_id", approve.getStudentId());
         }
         if(approve.getCollege() != null) {
-            example.createCriteria().andEqualTo("college", approve.getCollege());
+            criteria.andEqualTo("college", approve.getCollege());
         }
         if(approve.getStatus() != null) {
-            example.createCriteria().andEqualTo("status", approve.getStatus());
+            criteria.andEqualTo("status", approve.getStatus());
         }
         if(approve.getName() != null) {
-            example.createCriteria().andEqualTo("name", approve.getName());
+            criteria.andEqualTo("name", approve.getName());
         }
         if(approve.getCategory() != null) {
-            example.createCriteria().andEqualTo("category", approve.getCategory());
+            criteria.andEqualTo("category", approve.getCategory());
         }
         example.setOrderByClause("date DESC");
         return approveMapper.selectByExample(example);

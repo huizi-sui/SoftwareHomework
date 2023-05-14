@@ -48,6 +48,7 @@ public class ApprovalController {
     @PostMapping(value = "/findSomeApprove")
     @ApiOperation(value = "根据某些条件查询", httpMethod = "POST")
     public JSONObject findSomeApprove(@RequestBody Approve approve) {
+        System.out.println(approve);
         try {
             List<Approve> approves = approveService.findSome(approve);
             return SendMessage.send(JSON.toJSON(approves), StaticValue.ACCPET_CODE, "查询成功");
