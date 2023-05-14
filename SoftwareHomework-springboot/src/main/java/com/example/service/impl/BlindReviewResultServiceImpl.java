@@ -29,6 +29,11 @@ public class BlindReviewResultServiceImpl implements BlindReviewResultService {
     }
 
     @Override
+    public boolean exist(Long id) {
+        return blindReviewResultMapper.existsWithPrimaryKey(id);
+    }
+
+    @Override
     public List<BlindReviewResult> findAllBlindReviewResult() {
         return blindReviewResultMapper.selectAll();
     }

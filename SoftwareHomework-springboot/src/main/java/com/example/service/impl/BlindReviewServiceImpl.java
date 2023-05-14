@@ -48,4 +48,9 @@ public class BlindReviewServiceImpl implements BlindReviewService {
     public void update(BlindReview blindReview) {
         blindReviewMapper.updateByPrimaryKeySelective(blindReview);
     }
+
+    @Override
+    public boolean exist(Long id) {
+        return blindReviewMapper.existsWithPrimaryKey(id);
+    }
 }

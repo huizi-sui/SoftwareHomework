@@ -45,6 +45,19 @@ public class BlindReviewResultController {
         }
     }
 
+    @GetMapping(value = "/checkApprovalBlindReview")
+    @ApiOperation(value = "学生查看盲审状态", httpMethod = "GET")
+    public JSONObject checkApprovalBlindReview(@RequestParam Long id) {
+        if(blindReviewService.exist(id)) {
+            if(blindReviewResultService.exist(id)) {
+                return SendMessage.send(null, StaticValue.ACCPET_CODE, "盲审完成");
+            } else {
+                return SendMessage.send(null, StaticValue.ACCPET_CODE, "盲审中");
+            }
+        }
+        return SendMessage.send(null, StaticValue.ACCPET_CODE, "待盲审");
+    }
+
 
 /*    @GetMapping(value = "/findAllBlindReviewResult")
     @ApiOperation(value = "获得所有学生盲审查重结果", httpMethod = "GET")
