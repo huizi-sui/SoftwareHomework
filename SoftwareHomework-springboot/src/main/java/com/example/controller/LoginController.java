@@ -5,18 +5,25 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.Unit.SendMessage;
 import com.example.Unit.StaticValue;
 import com.example.entity.Login;
+import com.example.entity.UserInfo;
 import com.example.service.LoginService;
+import com.example.service.UserInfoService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Api(tags = "login")
 public class LoginController {
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private UserInfoService userInfoService;
 
     @PostMapping("/addLogin")
     @ApiOperation(value = "添加一个用户", httpMethod = "POST", notes = "暂用不到")
@@ -63,6 +70,15 @@ public class LoginController {
             if(existLogin.getRid() == login.getRid()) {
                 code = StaticValue.ACCPET_CODE;
                 message = "登录成功";
+                try {
+                    UserInfo userInfo = userInfoService.findById(login.getId());
+                    Map<String, String> map = new HashMap<>();
+                    map.put("name", userInfo.getName());
+                    return SendMessage.send(JSON.toJSON(map), code, message);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+
             } else {
                 code = StaticValue.PERMISSION_CODE;
                 message = "登录失败";

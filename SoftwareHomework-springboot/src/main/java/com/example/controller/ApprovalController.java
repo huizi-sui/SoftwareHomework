@@ -16,10 +16,7 @@ import com.example.service.SelfEvaluationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,9 +45,9 @@ public class ApprovalController {
         }
     }
 
-    @GetMapping(value = "/findSomeApprove")
-    @ApiOperation(value = "根据某些条件查询", httpMethod = "GET")
-    public JSONObject findSomeApprove(@RequestBody  Approve approve) {
+    @PostMapping(value = "/findSomeApprove")
+    @ApiOperation(value = "根据某些条件查询", httpMethod = "POST")
+    public JSONObject findSomeApprove(@RequestBody Approve approve) {
         try {
             List<Approve> approves = approveService.findSome(approve);
             return SendMessage.send(JSON.toJSON(approves), StaticValue.ACCPET_CODE, "查询成功");

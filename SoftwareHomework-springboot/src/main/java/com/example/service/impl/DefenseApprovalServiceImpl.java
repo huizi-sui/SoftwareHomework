@@ -21,7 +21,9 @@ public class DefenseApprovalServiceImpl implements DefenseApprovalService {
     @Override
     public void update(DefenseApproval defenseApproval) throws Exception {
         DefenseApproval exist = defenseApprovalMapper.selectByPrimaryKey(defenseApproval.getId());
-        defenseApproval.setAdminIsAgree(1);
+        if(exist.getAdminIsAgree() == 4 || exist.getAdminIsAgree() == 2) {
+            defenseApproval.setAdminIsAgree(1);
+        }
         defenseApprovalMapper.updateByPrimaryKeySelective(defenseApproval);
     }
 

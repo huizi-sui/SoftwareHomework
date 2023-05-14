@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -150,11 +148,14 @@ public class ApproveServiceImpl implements ApproveService {
         if(approve.getCollege() != null) {
             example.createCriteria().andEqualTo("college", approve.getCollege());
         }
-        if(approve.getStatus() != 0) {
+        if(approve.getStatus() != null) {
             example.createCriteria().andEqualTo("status", approve.getStatus());
         }
         if(approve.getName() != null) {
             example.createCriteria().andEqualTo("name", approve.getName());
+        }
+        if(approve.getCategory() != null) {
+            example.createCriteria().andEqualTo("category", approve.getCategory());
         }
         example.setOrderByClause("date DESC");
         return approveMapper.selectByExample(example);
