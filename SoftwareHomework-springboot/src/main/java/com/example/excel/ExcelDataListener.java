@@ -14,13 +14,12 @@ import java.util.List;
 @Slf4j
 public class ExcelDataListener implements ReadListener<ExcelPojo> {
 
-    private ExcelDao excelDao;
+    private ExcelService excelService;
     private static final int BATCH_COUNT = 100;
-    // 缓存的数据
     private List<ExcelPojo> cachedDataList = ListUtils.newArrayListWithExpectedSize(BATCH_COUNT);
 
-    public ExcelDataListener(ExcelDao excelDao) {
-        this.excelDao = excelDao;
+    public ExcelDataListener(ExcelService excelDao) {
+        this.excelService = excelDao;
     }
 
     // 每一条数据解析都会来调用
@@ -43,7 +42,7 @@ public class ExcelDataListener implements ReadListener<ExcelPojo> {
 
     private void saveData() {
         log.info("开始存储到数据库中");
-        excelDao.save(cachedDataList);
+        excelService.save(cachedDataList);
         log.info("存储完成");
     }
 }

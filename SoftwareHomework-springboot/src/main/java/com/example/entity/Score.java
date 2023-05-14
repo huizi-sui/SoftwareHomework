@@ -33,4 +33,6 @@ public class Score {
     @Column(name = "defense_score", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
     @ApiModelProperty(value = "答辩成绩")
     private Float defenseScore;
+
+
 }
