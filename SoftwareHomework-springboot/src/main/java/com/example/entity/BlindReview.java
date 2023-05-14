@@ -51,4 +51,8 @@ public class BlindReview {
     @Column(name = "status", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
     @ApiModelProperty(value = "是否已经上传论文", notes = "1代表未上传；2代表已经上传")
     private Integer status;
+
+    @Column(name = "approval_status", type = MySqlTypeConstant.INT, defaultValue = "1")
+    @ApiModelProperty(value = "待盲审是4， 盲审中是1， 盲审不通过是2， 盲审通过是3")
+    private Integer approvalStatus;
 }

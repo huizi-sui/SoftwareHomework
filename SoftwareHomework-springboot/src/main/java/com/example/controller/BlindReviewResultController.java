@@ -55,14 +55,19 @@ public class BlindReviewResultController {
     @GetMapping(value = "/checkApprovalBlindReview")
     @ApiOperation(value = "学生查看盲审状态", httpMethod = "GET")
     public JSONObject checkApprovalBlindReview(@RequestParam Long id) {
-        if(blindReviewService.exist(id)) {
-            if(blindReviewResultService.exist(id)) {
-                return SendMessage.send(null, StaticValue.ACCPET_CODE, "盲审完成");
-            } else {
-                return SendMessage.send(null, StaticValue.ACCPET_CODE, "盲审中");
-            }
+        BlindReview blindReview = blindReviewService.findBlindReviewById(id);
+        String message;
+        if(blindReview.getApprovalStatus() == 1) {
+            message = "盲审中";
+        } else if(blindReview.getApprovalStatus() == 2) {
+            message = "盲审不通过";
+        } else if(blindReview.getApprovalStatus() == 3) {
+            message = "盲审通过";
+        } else{
+            message = "待盲审";
         }
-        return SendMessage.send(null, StaticValue.ACCPET_CODE, "待盲审");
+
+        return SendMessage.send(null, StaticValue.ACCPET_CODE, message);
     }
 
 

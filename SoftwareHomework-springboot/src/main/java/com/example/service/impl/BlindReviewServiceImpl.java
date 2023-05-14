@@ -36,6 +36,7 @@ public class BlindReviewServiceImpl implements BlindReviewService {
         BlindReview blindReview = new BlindReview();
         blindReview.setId(id);
         blindReview.setStatus(4);
+        blindReview.setApprovalStatus(1);
         SelfEvaluation selfEvaluation = selfEvaluationMapper.selectByPrimaryKey(id);
         if(selfEvaluation != null) {
             blindReview.setName(selfEvaluation.getName());
@@ -46,6 +47,11 @@ public class BlindReviewServiceImpl implements BlindReviewService {
 
     @Override
     public void update(BlindReview blindReview) {
+        BlindReview exist = blindReviewMapper.selectByPrimaryKey(blindReview.getId());
+        // 盲审中或者是盲审通过
+        if(exist.getApprovalStatus() == 1 || exist.getApprovalStatus() == 3) {
+            return;
+        }
         blindReviewMapper.updateByPrimaryKeySelective(blindReview);
     }
 
