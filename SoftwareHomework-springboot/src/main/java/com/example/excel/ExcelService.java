@@ -27,7 +27,7 @@ public class ExcelService {
             studentManagementMapper.insert(studentManagement);
             Login login = new Login();
             login.setId(studentManagement.getStudentId());
-            login.setRid(1);
+            login.setRid(studentManagement.getRid());
             login.setPassword("123456");
             loginMapper.insert(login);
 

@@ -38,6 +38,11 @@ public class StudentManagement {
     @ApiModelProperty(value = "性别")
     private String sex;
 
+    // 权限
+    @Column(name = "rid", type = MySqlTypeConstant.INT, defaultValue = "1")
+    @ApiModelProperty(value = "权限")
+    private Integer rid;
+
     @Column(name = "defense_score", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
     @ApiModelProperty(value = "答辩成绩")
     private Float defenseScore;
