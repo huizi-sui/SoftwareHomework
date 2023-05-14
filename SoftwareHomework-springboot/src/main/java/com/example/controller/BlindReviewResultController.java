@@ -44,6 +44,7 @@ public class BlindReviewResultController {
         try {
             // 盲审已提交后才有盲审评阅总评，因此无需进行工作流程判断，只需更新
             blindReviewResultService.update(blindReviewResult);
+            blindReviewService.update(blindReviewResult.getId(), blindReviewResult.getApprovalStatus());
             approveService.update(blindReviewResult, approvalName, approvalId);
             workFlowService.assuredBlindReviewResult(blindReviewResult.getId());
             return SendMessage.send(null, StaticValue.ACCPET_CODE, "操作成功");

@@ -11,5 +11,7 @@ public interface BlindReviewService {
 
     void update(BlindReview blindReview);
 
+    void update(Long id, Integer approvalStatus);
+
     boolean exist(Long id);
 }
