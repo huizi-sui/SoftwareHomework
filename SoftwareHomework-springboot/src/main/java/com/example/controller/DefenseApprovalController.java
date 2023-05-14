@@ -12,8 +12,6 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @Api(tags = "评阅答辩审批")
 public class DefenseApprovalController {
@@ -34,7 +32,6 @@ public class DefenseApprovalController {
     @PostMapping(value = "/updateDefenseApproval")
     @ApiOperation(value = "学生发起评阅答辩审批申请")
     public JSONObject updateDefenseApproval(@RequestBody DefenseApproval defenseApproval) {
-        System.out.println(defenseApproval);
         try {
             boolean exist = workFlowService.findDefenseApprovalPreviewAssured(defenseApproval.getId());
             if (!exist) {
@@ -70,18 +67,4 @@ public class DefenseApprovalController {
         }
     }
 
-/*    @GetMapping(value = "/findAllDefenseApproval")
-    @ApiOperation(value = "获得所有学生评阅答辩审批信息", httpMethod = "GET")
-    @ApiResponses({
-            @ApiResponse(code = 404, message = "查询失败"),
-            @ApiResponse(code = 200, message = "查询成功")
-    })
-    public JSONObject findAllDefenseApproval() {
-        List<DefenseApproval> defenseApprovalList = defenseApprovalService.findAllDefenseApproval();
-        if(defenseApprovalList == null) {
-            return SendMessage.send(null, StaticValue.ERROR_CODE, "查询失败");
-        } else {
-            return SendMessage.send(JSON.toJSON(defenseApprovalList), StaticValue.ACCPET_CODE, "查询成功");
-        }
-    }*/
 }
