@@ -27,10 +27,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfo.setCollege("软件学院");
         userInfo.setLevel(22);
         String dateString = "2025-06-12";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date date = dateFormat.parse(dateString);
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        userInfo.setDate(sqlDate);
+        userInfo.setDate(dateString);
         userInfo.setSex("男");
         userInfo.setMajor("软件工程专业");
         userInfo.setApprovalResult("暂未获得学位");

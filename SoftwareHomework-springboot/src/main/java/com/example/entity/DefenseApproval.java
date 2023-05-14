@@ -33,9 +33,9 @@ public class DefenseApproval {
     private String title;
 
     // 答辩时间
-    @Column(name = "defense_time", type = MySqlTypeConstant.DATE)
+    @Column(name = "defense_time", type = MySqlTypeConstant.VARCHAR, length = 30)
     @ApiModelProperty(value = "答辩时间", notes = "格式为YYYY-MM-DD HH:mm:ss")
-    private Date defenseTime;
+    private String defenseTime;
 
     // 答辩委员会主席
     // 姓名

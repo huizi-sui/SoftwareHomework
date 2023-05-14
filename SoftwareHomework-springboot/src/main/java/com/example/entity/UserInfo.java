@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.Id;
-import java.sql.Date;
 /**
  * 待确认信息表
  */
@@ -42,9 +41,9 @@ public class UserInfo {
     private Integer level;
 
     // 预毕业日期
-    @Column(name = "date", type = MySqlTypeConstant.DATE, defaultValue = "2025-06-22")
+    @Column(name = "date", type = MySqlTypeConstant.VARCHAR, defaultValue = "2025-06-22", length = 30)
     @ApiModelProperty(value = "预毕业日期", notes = "格式为YYYY-MM-DD,默认为2025-06-22")
-    private Date date;
+    private String date;
 
     // 学院
     @Column(name = "college", type = MySqlTypeConstant.VARCHAR, length = 30, defaultValue = "软件学院")

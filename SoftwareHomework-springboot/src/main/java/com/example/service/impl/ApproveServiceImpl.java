@@ -10,6 +10,8 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -24,8 +26,9 @@ public class ApproveServiceImpl implements ApproveService {
         Approve approve = new Approve();
         approve.setStudentId(id);
         approve.setCategory(4);
-        LocalDate currentDate = LocalDate.now();
-        approve.setDate(Date.valueOf(currentDate));
+        LocalDateTime now = LocalDateTime.now(); // 获取当前时间
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // 指定格式
+        approve.setDate(now.format(formatter));
         approve.setStatus(1);
 
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(id);
@@ -38,8 +41,9 @@ public class ApproveServiceImpl implements ApproveService {
     public void add(DefenseApproval defenseApproval) {
         Approve approve = new Approve();
         approve.setStudentId(defenseApproval.getId());
-        LocalDate currentDate = LocalDate.now();
-        approve.setDate(Date.valueOf(currentDate));
+        LocalDateTime now = LocalDateTime.now(); // 获取当前时间
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // 指定格式
+        approve.setDate(now.format(formatter));
         approve.setStatus(1);
 
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(defenseApproval.getId());
@@ -53,8 +57,9 @@ public class ApproveServiceImpl implements ApproveService {
     public void add(DegreeApplication degreeApplication) {
         Approve approve = new Approve();
         approve.setStudentId(degreeApplication.getId());
-        LocalDate currentDate = LocalDate.now();
-        approve.setDate(Date.valueOf(currentDate));
+        LocalDateTime now = LocalDateTime.now(); // 获取当前时间
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // 指定格式
+        approve.setDate(now.format(formatter));
         approve.setStatus(1);
 
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(degreeApplication.getId());
@@ -69,8 +74,9 @@ public class ApproveServiceImpl implements ApproveService {
     public void add(BlindReview blindReview) {
         Approve approve = new Approve();
         approve.setStudentId(blindReview.getId());
-        LocalDate currentDate = LocalDate.now();
-        approve.setDate(Date.valueOf(currentDate));
+        LocalDateTime now = LocalDateTime.now(); // 获取当前时间
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // 指定格式
+        approve.setDate(now.format(formatter));
         approve.setStatus(1);
 
         UserInfo userInfo = userInfoMapper.selectByPrimaryKey(blindReview.getId());
