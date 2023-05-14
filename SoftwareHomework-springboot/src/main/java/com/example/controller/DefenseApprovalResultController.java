@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.Unit.SendMessage;
 import com.example.Unit.StaticValue;
@@ -24,6 +25,14 @@ public class DefenseApprovalResultController {
     private WorkFlowService workFlowService;
     @Autowired
     private ApproveService approveService;
+
+    @GetMapping(value = "/findDefenseApprovalResultById")
+    @ApiOperation(value = "学生查看答辩成绩", httpMethod = "GET")
+    public JSONObject findDefenseApprovalResultById(@RequestParam Long id) {
+        DefenseApprovalResult defenseApprovalResult = defenseApprovalResultService.findById(id);
+        return SendMessage.send(JSON.toJSON(defenseApprovalResult), StaticValue.ACCPET_CODE, "查询成功");
+    }
+
 
     @PostMapping(value = "/updateDefenseApprovalResult/{approvalName}/{approvalId}")
     @ApiOperation(value = "管理员提交答辩成绩", httpMethod = "POST")

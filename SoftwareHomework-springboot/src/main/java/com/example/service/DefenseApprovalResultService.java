@@ -8,5 +8,7 @@ public interface DefenseApprovalResultService {
 
     void insert(DefenseApprovalResult defenseApprovalResult);
 
+    DefenseApprovalResult findById(Long id);
+
     void update(DefenseApprovalResult defenseApprovalResult);
 }

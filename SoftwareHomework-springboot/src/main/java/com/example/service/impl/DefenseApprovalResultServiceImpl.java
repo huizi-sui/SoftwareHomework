@@ -18,6 +18,11 @@ public class DefenseApprovalResultServiceImpl implements DefenseApprovalResultSe
     }
 
     @Override
+    public DefenseApprovalResult findById(Long id) {
+        return defenseApprovalResultMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public void update(DefenseApprovalResult defenseApprovalResult) {
         boolean exist = defenseApprovalResultMapper.existsWithPrimaryKey(defenseApprovalResult.getId());
         if(!exist) {
