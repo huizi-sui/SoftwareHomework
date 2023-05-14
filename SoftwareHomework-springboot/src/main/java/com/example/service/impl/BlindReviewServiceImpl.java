@@ -36,7 +36,7 @@ public class BlindReviewServiceImpl implements BlindReviewService {
         BlindReview blindReview = new BlindReview();
         blindReview.setId(id);
         blindReview.setStatus(4);
-        blindReview.setApprovalStatus(1);
+        blindReview.setApprovalStatus(4);
         SelfEvaluation selfEvaluation = selfEvaluationMapper.selectByPrimaryKey(id);
         if(selfEvaluation != null) {
             blindReview.setName(selfEvaluation.getName());
