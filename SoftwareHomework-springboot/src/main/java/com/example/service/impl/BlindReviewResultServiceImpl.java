@@ -34,6 +34,11 @@ public class BlindReviewResultServiceImpl implements BlindReviewResultService {
     }
 
     @Override
+    public BlindReviewResult findById(Long id) {
+        return blindReviewResultMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public List<BlindReviewResult> findAllBlindReviewResult() {
         return blindReviewResultMapper.selectAll();
     }

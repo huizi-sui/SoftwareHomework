@@ -12,6 +12,8 @@ public interface BlindReviewResultService {
 
     boolean exist(Long id);
 
+    BlindReviewResult findById(Long id);
+
     void insert(BlindReviewResult blindReviewResult);
     List<BlindReviewResult> findAllBlindReviewResult();
 }

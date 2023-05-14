@@ -31,6 +31,13 @@ public class BlindReviewResultController {
     @Autowired
     private ApproveService approveService;
 
+    @GetMapping(value = "/findBlindReviewResultById")
+    @ApiOperation(value = "查看盲审成绩表", httpMethod = "GET")
+    public JSONObject findBlindReviewResultById(@RequestParam Long id) {
+        BlindReviewResult blindReviewResult = blindReviewResultService.findById(id);
+        return SendMessage.send(JSON.toJSON(blindReviewResult), StaticValue.ACCPET_CODE, "查询成功");
+    }
+
     @PostMapping(value = "/updateBlindReviewResult/{approvalName}/{approvalId}")
     @ApiOperation(value = "管理员提交盲审评阅总评信息", httpMethod = "POST")
     public JSONObject updateBlindReviewResult(@RequestBody BlindReviewResult blindReviewResult, @PathVariable String approvalName, @PathVariable Integer approvalId) {
