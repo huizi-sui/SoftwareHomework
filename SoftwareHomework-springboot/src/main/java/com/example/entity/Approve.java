@@ -49,7 +49,7 @@ public class Approve {
     private String approveName;
 
     @Column(name = "category", type = MySqlTypeConstant.TINYINT)
-    @ApiModelProperty(value = "申请类型，1. 评阅审批答辩，2. 盲审审批，3. 学位申请")
+    @ApiModelProperty(value = "申请类型，1. 评阅审批答辩，2. 盲审审批，3. 学位申请,4 答辩成绩提交")
     private Integer category;
 
 }

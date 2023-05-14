@@ -106,7 +106,7 @@ public class ApproveServiceImpl implements ApproveService {
         approve.setStatus(degreeApplication.getAdminIsAgree());
         approve.setApproveName(approvalName);
 
-        approveMapper.updateByPrimaryKey(approve);
+        approveMapper.updateByPrimaryKeySelective(approve);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class ApproveServiceImpl implements ApproveService {
         approve.setId(approvalId);
         approve.setApproveName(approvalName);
         approve.setStatus(defenseApprovalResult.getStatus());
-        approveMapper.updateByPrimaryKey(approve);
+        approveMapper.updateByPrimaryKeySelective(approve);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class ApproveServiceImpl implements ApproveService {
         approve.setStatus(blindReviewResult.getApprovalStatus());
         approve.setApproveName(approvalName);
 
-        approveMapper.updateByPrimaryKey(approve);
+        approveMapper.updateByPrimaryKeySelective(approve);
     }
 
     @Override

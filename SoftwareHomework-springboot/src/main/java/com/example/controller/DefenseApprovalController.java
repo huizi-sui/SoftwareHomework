@@ -61,7 +61,7 @@ public class DefenseApprovalController {
                 // 更新工作流程， 因为申请时已经判断前面都完成了，因此只需要更新就好
                 boolean result = workFlowService.assuredDefenseApproval(defenseApproval.getId());
                 if (!result) {
-                    throw new Exception("确认盲审审核信息失败");
+                    throw new Exception("确认答辩申请信息失败");
                 }
             }
             return SendMessage.send(null, StaticValue.ACCPET_CODE, "操作成功");

@@ -34,12 +34,12 @@ public class BlindReviewResult {
     private String comment;
 
     // 论文盲审分数
-    @Column(name = "blindScore1", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
+    @Column(name = "blind_score1", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
     @ApiModelProperty(value = "论文盲审分数1")
     private Float blindScore1;
 
     // 论文盲审分数
-    @Column(name = "blindScore2", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
+    @Column(name = "blind_score2", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
     @ApiModelProperty(value = "论文盲审分数2")
     private Float blindScore2;
 
