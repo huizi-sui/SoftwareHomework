@@ -207,6 +207,20 @@ public class WorkFlowServiceImpl implements WorkFlowService {
     }
 
     @Override
+    public boolean findAllowDownloadPreviewAssured(Long id) {
+        WorkFlow workFlow = workFlowMapper.selectByPrimaryKey(id);
+        if(null == workFlow) {
+            return false;
+        }
+        if(workFlow.getUserInfo() == 2 && workFlow.getSelfEvaluation() == 2 &&
+                workFlow.getBlindReview() == 2 && workFlow.getDefenseApproval() == 2 && workFlow.getBlindReviewResult() == 2 &&
+                workFlow.getReviewSummary() == 2 ) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public WorkFlow findById(Long id) {
         WorkFlow workFlow = workFlowMapper.selectByPrimaryKey(id);
         if(null == workFlow) {

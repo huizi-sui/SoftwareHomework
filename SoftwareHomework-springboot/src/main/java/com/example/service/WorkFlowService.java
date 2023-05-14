@@ -36,5 +36,7 @@ public interface WorkFlowService {
 
     boolean assuredDegreeApplication(Long id);
 
+    boolean findAllowDownloadPreviewAssured(Long id);
+
     WorkFlow findById(Long id);
 }

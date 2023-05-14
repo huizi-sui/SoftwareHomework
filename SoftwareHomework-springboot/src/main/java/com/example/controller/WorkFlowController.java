@@ -38,7 +38,11 @@ public class WorkFlowController {
     @ApiOperation(value = "学生点击下载材料后即调用该接口", httpMethod = "GET")
     public JSONObject assuredAllowDownload(@RequestParam Long id) {
         try {
-            boolean result = workFlowService.assuredAllowDownload(id);
+            boolean result = workFlowService.findAllowDownloadPreviewAssured(id);
+            if(!result) {
+                throw new Exception("前面操作未完成，不允许下载");
+            }
+            result = workFlowService.assuredAllowDownload(id);
             if(!result) {
                 throw new Exception("操作失败");
             }
