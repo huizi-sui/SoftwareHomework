@@ -21,10 +21,7 @@ public class DefenseApprovalServiceImpl implements DefenseApprovalService {
     @Override
     public void update(DefenseApproval defenseApproval) throws Exception {
         DefenseApproval exist = defenseApprovalMapper.selectByPrimaryKey(defenseApproval.getId());
-        System.out.println(exist);
-        if(exist.getAdminIsAgree() != null && exist.getAdminIsAgree() == 3) {
-            throw new Exception("审批通过，不允许轻易更改");
-        }
+        defenseApproval.setAdminIsAgree(1);
         defenseApprovalMapper.updateByPrimaryKeySelective(defenseApproval);
     }
 
