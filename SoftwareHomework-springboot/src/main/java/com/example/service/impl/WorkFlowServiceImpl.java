@@ -81,7 +81,6 @@ public class WorkFlowServiceImpl implements WorkFlowService {
         workFlow.setApprovalResult(1);
         workFlow.setSelfEvaluation(1);
         workFlow.setUserInfo(1);
-        workFlow.setReviewSummary(1);
         workFlowMapper.insert(workFlow);
     }
 
@@ -186,7 +185,7 @@ public class WorkFlowServiceImpl implements WorkFlowService {
         }
         if(workFlow.getUserInfo() == 2 && workFlow.getSelfEvaluation() == 2 &&
                 workFlow.getBlindReview() == 2 && workFlow.getDefenseApproval() == 2 && workFlow.getBlindReviewResult() == 2 &&
-                workFlow.getReviewSummary() == 2 && workFlow.getAllowDownload() == 2 && workFlow.getScoreSubmission() == 2) {
+                workFlow.getAllowDownload() == 2 && workFlow.getScoreSubmission() == 2) {
             return true;
         }
         return false;
@@ -213,8 +212,7 @@ public class WorkFlowServiceImpl implements WorkFlowService {
             return false;
         }
         if(workFlow.getUserInfo() == 2 && workFlow.getSelfEvaluation() == 2 &&
-                workFlow.getBlindReview() == 2 && workFlow.getDefenseApproval() == 2 && workFlow.getBlindReviewResult() == 2 &&
-                workFlow.getReviewSummary() == 2 ) {
+                workFlow.getBlindReview() == 2 && workFlow.getDefenseApproval() == 2 && workFlow.getBlindReviewResult() == 2) {
             return true;
         }
         return false;

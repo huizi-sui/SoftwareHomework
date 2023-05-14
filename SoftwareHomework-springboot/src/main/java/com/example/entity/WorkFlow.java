@@ -55,11 +55,6 @@ public class WorkFlow {
     @ApiModelProperty(value = "评阅答辩审批", notes = "已完成为2，未完成为1，默认未完成")
     private Integer defenseApproval;
 
-    // 盲审评阅总评
-    @Column(name = "review_summary", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
-    @ApiModelProperty(value = "盲审评阅总评", notes = "已完成为2，未完成为1，默认未完成")
-    private Integer reviewSummary;
-
     // 开放答辩材料下载
     @Column(name = "allow_download", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
     @ApiModelProperty(value = "开放答辩材料下载", notes = "已完成为2，未完成为1，默认未完成")
