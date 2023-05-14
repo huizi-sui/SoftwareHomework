@@ -54,6 +54,6 @@ public class DegreeApplication {
 
     // 是否审批
     @Column(name = "admin_is_agree", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
-    @ApiModelProperty(value = "是否已经审批", notes = "1是审批中，2是审批退回，3是审批通过")
+    @ApiModelProperty(value = "是否已经审批", notes = "1是审批中，2是审批退回，3是审批通过, 4是待上传")
     private Integer adminIsAgree;
 }

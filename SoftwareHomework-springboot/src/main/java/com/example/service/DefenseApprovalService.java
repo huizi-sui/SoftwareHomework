@@ -10,6 +10,8 @@ public interface DefenseApprovalService {
 
     void update(DefenseApproval defenseApproval) throws Exception;
 
+    void update(Long id, Integer status);
+
     void insert(Long id);
     List<DefenseApproval> findAllDefenseApproval();
 

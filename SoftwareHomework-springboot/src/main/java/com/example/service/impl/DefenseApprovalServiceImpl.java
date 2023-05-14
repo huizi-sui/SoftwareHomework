@@ -28,6 +28,15 @@ public class DefenseApprovalServiceImpl implements DefenseApprovalService {
     }
 
     @Override
+    public void update(Long id, Integer status) {
+        DefenseApproval defenseApproval = new DefenseApproval();
+        defenseApproval.setId(id);
+        defenseApproval.setAdminIsAgree(status);
+
+        defenseApprovalMapper.updateByPrimaryKeySelective(defenseApproval);
+    }
+
+    @Override
     public void insert(Long id) {
         DefenseApproval defenseApproval = new DefenseApproval();
         defenseApproval.setId(id);

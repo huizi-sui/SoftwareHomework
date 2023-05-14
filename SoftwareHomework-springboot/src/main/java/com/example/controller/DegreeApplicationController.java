@@ -42,7 +42,6 @@ public class DegreeApplicationController {
             if(!result) {
                 throw new Exception("前面操作未完成，不允许申请学位");
             }
-            degreeApplication.setAdminIsAgree(1);
             degreeApplicationService.update(degreeApplication);
             approveService.add(degreeApplication);
             workFlowService.assuredDegreeApplication(degreeApplication.getId());

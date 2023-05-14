@@ -40,7 +40,7 @@ public class DegreeApplicationServiceImpl implements DegreeApplicationService {
         if(exist.getAdminIsAgree() == 3) {
             throw new Exception("已经获得学位，不允许操作");
         } else {
-            degreeApplcationMapper.updateByPrimaryKey(degreeApplication);
+            degreeApplcationMapper.updateByPrimaryKeySelective(degreeApplication);
         }
     }
 
