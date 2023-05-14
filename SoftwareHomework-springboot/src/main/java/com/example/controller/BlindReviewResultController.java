@@ -15,10 +15,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,9 +31,9 @@ public class BlindReviewResultController {
     @Autowired
     private ApproveService approveService;
 
-    @PostMapping(value = "/updateBlindReviewResult")
+    @PostMapping(value = "/updateBlindReviewResult/{approvalName}/{approvalId}")
     @ApiOperation(value = "管理员提交盲审评阅总评信息", httpMethod = "POST")
-    public JSONObject updateBlindReviewResult(@RequestBody BlindReviewResult blindReviewResult, @RequestBody String approvalName, @RequestBody Integer approvalId) {
+    public JSONObject updateBlindReviewResult(@RequestBody BlindReviewResult blindReviewResult, @PathVariable String approvalName, @PathVariable Integer approvalId) {
         try {
             // 盲审已提交后才有盲审评阅总评，因此无需进行工作流程判断，只需更新
             blindReviewResultService.update(blindReviewResult);

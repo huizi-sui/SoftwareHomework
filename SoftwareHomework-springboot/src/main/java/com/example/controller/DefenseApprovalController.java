@@ -51,9 +51,9 @@ public class DefenseApprovalController {
         }
     }
 
-    @PostMapping(value = "/agreeDefenseApproval")
+    @PostMapping(value = "/agreeDefenseApproval/{approvalName}/{approvalId}")
     @ApiOperation(value = "管理员同意或不同意答辩申请")
-    public JSONObject agreeDefenseApproval(@RequestBody DefenseApproval defenseApproval,@RequestBody String approvalName, @RequestBody Integer approvalId) {
+    public JSONObject agreeDefenseApproval(@RequestBody DefenseApproval defenseApproval,@PathVariable String approvalName, @PathVariable  Integer approvalId) {
         try {
             approveService.update(defenseApproval, approvalName, approvalId);
             defenseApprovalService.update(defenseApproval);

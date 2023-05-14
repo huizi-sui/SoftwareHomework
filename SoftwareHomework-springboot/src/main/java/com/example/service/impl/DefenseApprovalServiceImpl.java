@@ -31,6 +31,7 @@ public class DefenseApprovalServiceImpl implements DefenseApprovalService {
     public void insert(Long id) {
         DefenseApproval defenseApproval = new DefenseApproval();
         defenseApproval.setId(id);
+        defenseApproval.setAdminIsAgree(4);
 
         SelfEvaluation selfEvaluation = selfEvaluationMapper.selectByPrimaryKey(id);
         if(selfEvaluation != null && selfEvaluation.getName() != null) {

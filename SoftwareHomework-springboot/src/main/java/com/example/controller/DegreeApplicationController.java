@@ -52,9 +52,9 @@ public class DegreeApplicationController {
         }
     }
 
-    @PostMapping(value = "/approvalDegreeApplication")
+    @PostMapping(value = "/approvalDegreeApplication/{approvalName}/{approvalId}")
     @ApiOperation(value = "管理员审批学位信息", httpMethod = "POST")
-    public JSONObject approvalDegreeApplication(@RequestBody DegreeApplication degreeApplication,@RequestBody String approvalName, @RequestBody Integer approvalId) {
+    public JSONObject approvalDegreeApplication(@RequestBody DegreeApplication degreeApplication,@PathVariable String approvalName, @PathVariable Integer approvalId) {
         try {
             // 管理员审批，只需更新，无需检查
             workFlowService.assuredApprovalResult(degreeApplication.getId());

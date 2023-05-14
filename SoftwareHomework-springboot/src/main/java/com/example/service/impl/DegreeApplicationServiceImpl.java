@@ -21,6 +21,7 @@ public class DegreeApplicationServiceImpl implements DegreeApplicationService {
     public void insert(Long id) {
         DegreeApplication degreeApplication = new DegreeApplication();
         degreeApplication.setId(id);
+        degreeApplication.setAdminIsAgree(4);
 
         SelfEvaluation selfEvaluation = selfEvaluationMapper.selectByPrimaryKey(id);
         if(selfEvaluation!= null && selfEvaluation.getName() != null) {
