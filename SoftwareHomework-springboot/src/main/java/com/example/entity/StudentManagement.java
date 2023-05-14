@@ -5,6 +5,7 @@ import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 @ToString
 @Table
 @ApiModel(value = "学生管理")
+@EqualsAndHashCode
 public class StudentManagement {
     @Column(name = "student_id", type = MySqlTypeConstant.BIGINT, isKey = true)
     @ApiModelProperty(value = "学号")
@@ -32,13 +34,9 @@ public class StudentManagement {
     @ApiModelProperty(value = "所修专业", notes = "默认为软件工程专业")
     private String major;
 
-    @Column(name = "boss_name", type = MySqlTypeConstant.VARCHAR, length = 10)
-    @ApiModelProperty(value = "导师姓名")
-    private String bossName;
-
-    @Column(name = "title", type = MySqlTypeConstant.VARCHAR, length = 100)
-    @ApiModelProperty(value = "论文题目")
-    private String title;
+    @Column(name = "sex", type = MySqlTypeConstant.VARCHAR, length = 10)
+    @ApiModelProperty(value = "性别")
+    private String sex;
 
     @Column(name = "defense_score", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
     @ApiModelProperty(value = "答辩成绩")

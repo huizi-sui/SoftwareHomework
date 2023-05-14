@@ -4,6 +4,7 @@ import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSONObject;
 import com.example.Unit.SendMessage;
 import com.example.Unit.StaticValue;
+import com.example.entity.StudentManagement;
 import com.example.excel.ExcelService;
 import com.example.excel.ExcelDataListener;
 import com.example.excel.ExcelPojo;
@@ -31,7 +32,7 @@ public class excelController {
         System.out.println(file.getName());
         try {
             // 默认去掉了第一行
-            EasyExcel.read(file.getInputStream(), ExcelPojo.class, new ExcelDataListener(excelService)).sheet().doRead();
+            EasyExcel.read(file.getInputStream(), StudentManagement.class, new ExcelDataListener(excelService)).sheet().doRead();
             return SendMessage.send(null, StaticValue.ACCPET_CODE, "成功导入数据库");
         }catch (Exception e) {
             return SendMessage.send(null, StaticValue.ERROR_CODE, e.getMessage());

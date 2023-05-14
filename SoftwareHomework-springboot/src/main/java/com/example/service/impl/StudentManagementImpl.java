@@ -35,12 +35,7 @@ public class StudentManagementImpl implements StudentManagementService {
         if(studentManagement.getMajor() != null){
             example.createCriteria().andEqualTo("major", studentManagement.getMajor());
         }
-        if(studentManagement.getBossName() != null){
-            example.createCriteria().andEqualTo("boss_name", studentManagement.getBossName());
-        }
-        if(studentManagement.getTitle() != null){
-            example.createCriteria().andEqualTo("title", studentManagement.getTitle());
-        }
+
         if(studentManagement.getDefenseScore() != null){
             example.createCriteria().andEqualTo("defense_score", studentManagement.getDefenseScore());
         }
