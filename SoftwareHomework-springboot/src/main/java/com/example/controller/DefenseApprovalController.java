@@ -34,6 +34,7 @@ public class DefenseApprovalController {
     @PostMapping(value = "/updateDefenseApproval")
     @ApiOperation(value = "学生发起评阅答辩审批申请")
     public JSONObject updateDefenseApproval(@RequestBody DefenseApproval defenseApproval) {
+        System.out.println(defenseApproval);
         try {
             boolean exist = workFlowService.findDefenseApprovalPreviewAssured(defenseApproval.getId());
             if (!exist) {
@@ -43,8 +44,10 @@ public class DefenseApprovalController {
             // 添加或者更新时，设置为未被管理员审批的状态
             defenseApproval.setAdminIsAgree(1);
             defenseApprovalService.update(defenseApproval);
+            System.out.println(1);
             // 添加到申请表中
             approveService.add(defenseApproval);
+            System.out.println(1);
             return SendMessage.send(null, StaticValue.ACCPET_CODE, "申请成功");
         }catch (Exception e) {
             return SendMessage.send(null, StaticValue.ERROR_CODE, e.getMessage());

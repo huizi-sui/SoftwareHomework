@@ -144,7 +144,7 @@ public class WorkFlowServiceImpl implements WorkFlowService {
             return false;
         }
         if(workFlow.getUserInfo() == 2 && workFlow.getSelfEvaluation() == 2 &&
-            workFlow.getBlindReview() == 2) {
+            workFlow.getBlindReview() == 2 && workFlow.getBlindReviewResult() == 2) {
             return true;
         }
         return false;
