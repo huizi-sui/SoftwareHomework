@@ -43,32 +43,20 @@ public class SelfEvaluationController {
             @ApiResponse(code = 404, message = "更新失败")
     })
     public JSONObject updateSelfEvaluation(@RequestBody SelfEvaluation selfEvaluation) {
-        boolean result = selfEvaluationService.updateSelfEvaluation(selfEvaluation);
-        if(result) {
-            return SendMessage.send(null, StaticValue.ACCPET_CODE, "更新成功");
-        } else {
-            return SendMessage.send(null, StaticValue.ERROR_CODE, "更新失败");
-        }
-    }
-
-    @PostMapping(value = "/assuredSelfEvaluation")
-    @ApiOperation(value = "确认自评预审信息，用于更新工作流程表")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "操作成功"),
-            @ApiResponse(code = 404, message = "操作失败")
-    })
-    public JSONObject assuredSelfEvaluation(@RequestBody Map<String, Object> map) {
-        Long id = (Long) map.get("id");
         try {
-            boolean exist = workFlowService.findUserIsExist(id);
+            boolean result = selfEvaluationService.updateSelfEvaluation(selfEvaluation);
+            if(!result) {
+                throw new Exception("更新失败");
+            }
+            boolean exist = workFlowService.findUserIsExist(selfEvaluation.getId());
             if(!exist) {
                 throw new Exception("前面操作未完成");
             }
-            boolean result = workFlowService.assuredSelfEvaluation(id);
+            result = workFlowService.assuredSelfEvaluation(selfEvaluation.getId());
             if(!result) {
                 throw new Exception("确认用户信息失败");
             }
-            return SendMessage.send(null, StaticValue.ACCPET_CODE, "已完成自评论文预审信息");
+            return SendMessage.send(null, StaticValue.ACCPET_CODE, "更新成功");
         }catch (Exception e) {
             return SendMessage.send(null, StaticValue.ERROR_CODE, e.getMessage());
         }

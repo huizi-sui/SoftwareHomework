@@ -13,6 +13,7 @@ public class DefenseApprovalResultServiceImpl implements DefenseApprovalResultSe
 
     @Override
     public void insert(DefenseApprovalResult defenseApprovalResult) {
+        defenseApprovalResult.setStatus(1);
         defenseApprovalResultMapper.insert(defenseApprovalResult);
     }
 

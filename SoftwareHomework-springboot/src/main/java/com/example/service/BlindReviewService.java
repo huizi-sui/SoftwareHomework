@@ -10,4 +10,6 @@ public interface BlindReviewService {
     void insert(Long id);
 
     void update(BlindReview blindReview);
+
+    boolean exist(Long id);
 }

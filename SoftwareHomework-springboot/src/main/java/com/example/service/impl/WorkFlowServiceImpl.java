@@ -96,12 +96,39 @@ public class WorkFlowServiceImpl implements WorkFlowService {
     }
 
     @Override
-    public boolean assuredDefenseApprovalAndAllowDownload(Long id) {
+    public boolean assuredDefenseApproval(Long id) {
         try {
             WorkFlow workFlow = new WorkFlow();
             workFlow.setId(id);
             workFlow.setDefenseApproval(2);
+            workFlowMapper.updateByPrimaryKeySelective(workFlow);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean assuredAllowDownload(Long id) {
+        try {
+            WorkFlow workFlow = new WorkFlow();
+            workFlow.setId(id);
             workFlow.setAllowDownload(2);
+            workFlowMapper.updateByPrimaryKeySelective(workFlow);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean assuredApprovalResult(Long id) {
+        try {
+            WorkFlow workFlow = new WorkFlow();
+            workFlow.setId(id);
+            workFlow.setApprovalResult(2);
             workFlowMapper.updateByPrimaryKeySelective(workFlow);
             return true;
         } catch (Exception e) {
@@ -117,7 +144,7 @@ public class WorkFlowServiceImpl implements WorkFlowService {
             return false;
         }
         if(workFlow.getUserInfo() == 2 && workFlow.getSelfEvaluation() == 2 &&
-            workFlow.getBlindReview() == 2) {
+            workFlow.getBlindReview() == 2 && workFlow.getBlindReviewResult() == 2) {
             return true;
         }
         return false;
@@ -177,5 +204,15 @@ public class WorkFlowServiceImpl implements WorkFlowService {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    @Override
+    public WorkFlow findById(Long id) {
+        WorkFlow workFlow = workFlowMapper.selectByPrimaryKey(id);
+        if(null == workFlow) {
+            insert(id);
+            workFlow = workFlowMapper.selectByPrimaryKey(id);
+        }
+        return workFlow;
     }
 }

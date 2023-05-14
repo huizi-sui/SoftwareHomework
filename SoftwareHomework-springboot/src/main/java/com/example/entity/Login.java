@@ -29,7 +29,7 @@ public class Login extends BaseModel {
     @ApiModelProperty(value = "权限")
     private Integer rid;
 
-    @Column(name = "email", type = MySqlTypeConstant.VARCHAR, length = 20)
+    @Column(name = "email", type = MySqlTypeConstant.VARCHAR, length = 30)
     @ApiModelProperty(value = "邮箱")
     private String email;
 

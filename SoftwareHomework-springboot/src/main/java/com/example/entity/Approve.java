@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.Id;
-import java.sql.Date;
 
 /**
  * 审批表
@@ -37,9 +36,9 @@ public class Approve {
     @ApiModelProperty(value = "所在学院", notes = "默认为软件学院")
     private String college;
 
-    @Column(name = "date", type = MySqlTypeConstant.DATE, defaultValue = "2025-06-22")
+    @Column(name = "date", type = MySqlTypeConstant.VARCHAR, defaultValue = "2025-06-22", length = 30)
     @ApiModelProperty(value = "申请时间", notes = "格式为YYYY-MM-DD,默认为2025-06-22")
-    private Date date;
+    private String date;
 
     @Column(name = "status", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
     @ApiModelProperty(value = "审核状态", notes = "默认为1，未审核；2是审核退回；3是审核通过")
@@ -48,5 +47,9 @@ public class Approve {
     @Column(name = "approve_name", type = MySqlTypeConstant.VARCHAR, length = 15)
     @ApiModelProperty(value = "审批人")
     private String approveName;
+
+    @Column(name = "category", type = MySqlTypeConstant.TINYINT)
+    @ApiModelProperty(value = "申请类型，1. 评阅审批答辩，2. 盲审审批，3. 学位申请")
+    private Integer category;
 
 }

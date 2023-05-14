@@ -43,4 +43,8 @@ public class BlindReviewResult {
     @ApiModelProperty(value = "论文盲审分数2")
     private Float blindScore2;
 
+    // 审批状态
+    @Column(name = "approval_status", type = MySqlTypeConstant.TINYINT, defaultValue = "1")
+    @ApiModelProperty(value = "审批状态", notes = "1代表审批中，2代表审批失败，3代表审批通过")
+    private Integer approvalStatus;
 }

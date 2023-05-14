@@ -15,6 +15,7 @@ public class BlindReviewResultServiceImpl implements BlindReviewResultService {
 
     @Override
     public void insert(BlindReviewResult blindReviewResult) {
+        blindReviewResult.setApprovalStatus(1);
         blindReviewResultMapper.insert(blindReviewResult);
     }
     @Override
@@ -25,6 +26,11 @@ public class BlindReviewResultServiceImpl implements BlindReviewResultService {
         } else {
             blindReviewResultMapper.updateByPrimaryKey(blindReviewResult);
         }
+    }
+
+    @Override
+    public boolean exist(Long id) {
+        return blindReviewResultMapper.existsWithPrimaryKey(id);
     }
 
     @Override

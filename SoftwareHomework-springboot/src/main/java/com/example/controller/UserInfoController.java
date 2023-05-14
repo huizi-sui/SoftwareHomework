@@ -32,6 +32,7 @@ public class UserInfoController {
     public JSONObject getUserInfo(@RequestParam("id") Long id) {
         try {
             UserInfo userInfo = userInfoService.findById(id);
+            System.out.println(userInfo);
             return SendMessage.send(JSON.toJSON(userInfo), StaticValue.ACCPET_CODE, "查询成功");
         } catch (ParseException e) {
             return SendMessage.send(null, StaticValue.ERROR_CODE, e.getMessage());

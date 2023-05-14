@@ -21,9 +21,7 @@ public class DefenseApprovalServiceImpl implements DefenseApprovalService {
     @Override
     public void update(DefenseApproval defenseApproval) throws Exception {
         DefenseApproval exist = defenseApprovalMapper.selectByPrimaryKey(defenseApproval.getId());
-        if(exist.getAdminIsAgree() == 2) {
-            throw new Exception("审批通过，不允许轻易更改");
-        }
+        defenseApproval.setAdminIsAgree(1);
         defenseApprovalMapper.updateByPrimaryKeySelective(defenseApproval);
     }
 
@@ -31,6 +29,7 @@ public class DefenseApprovalServiceImpl implements DefenseApprovalService {
     public void insert(Long id) {
         DefenseApproval defenseApproval = new DefenseApproval();
         defenseApproval.setId(id);
+        defenseApproval.setAdminIsAgree(4);
 
         SelfEvaluation selfEvaluation = selfEvaluationMapper.selectByPrimaryKey(id);
         if(selfEvaluation != null && selfEvaluation.getName() != null) {

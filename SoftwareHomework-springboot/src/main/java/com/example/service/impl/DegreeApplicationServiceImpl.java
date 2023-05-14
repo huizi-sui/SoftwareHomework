@@ -21,6 +21,7 @@ public class DegreeApplicationServiceImpl implements DegreeApplicationService {
     public void insert(Long id) {
         DegreeApplication degreeApplication = new DegreeApplication();
         degreeApplication.setId(id);
+        degreeApplication.setAdminIsAgree(4);
 
         SelfEvaluation selfEvaluation = selfEvaluationMapper.selectByPrimaryKey(id);
         if(selfEvaluation!= null && selfEvaluation.getName() != null) {
@@ -35,12 +36,12 @@ public class DegreeApplicationServiceImpl implements DegreeApplicationService {
 
     @Override
     public void update(DegreeApplication degreeApplication) throws Exception {
-        if(degreeApplication.getAdminIsAgree() == 2) {
+        DegreeApplication exist = degreeApplcationMapper.selectByPrimaryKey(degreeApplication.getId());
+        if(exist.getAdminIsAgree() == 3) {
             throw new Exception("已经获得学位，不允许操作");
         } else {
             degreeApplcationMapper.updateByPrimaryKey(degreeApplication);
         }
-
     }
 
     @Override

@@ -8,10 +8,7 @@ import com.example.entity.DefenseApproval;
 import com.example.service.ApproveService;
 import com.example.service.DefenseApprovalService;
 import com.example.service.WorkFlowService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +34,7 @@ public class DefenseApprovalController {
     @PostMapping(value = "/updateDefenseApproval")
     @ApiOperation(value = "学生发起评阅答辩审批申请")
     public JSONObject updateDefenseApproval(@RequestBody DefenseApproval defenseApproval) {
+        System.out.println(defenseApproval);
         try {
             boolean exist = workFlowService.findDefenseApprovalPreviewAssured(defenseApproval.getId());
             if (!exist) {
@@ -44,7 +42,6 @@ public class DefenseApprovalController {
             }
             // 插入或者更新评阅答辩审批表
             // 添加或者更新时，设置为未被管理员审批的状态
-            defenseApproval.setAdminIsAgree(1);
             defenseApprovalService.update(defenseApproval);
             // 添加到申请表中
             approveService.add(defenseApproval);
@@ -54,15 +51,15 @@ public class DefenseApprovalController {
         }
     }
 
-    @PostMapping(value = "/agreeDefenseApproval")
+    @PostMapping(value = "/agreeDefenseApproval/{approvalName}/{approvalId}")
     @ApiOperation(value = "管理员同意或不同意答辩申请")
-    public JSONObject agreeDefenseApproval(@RequestBody DefenseApproval defenseApproval, String approvalName) {
+    public JSONObject agreeDefenseApproval(@RequestBody DefenseApproval defenseApproval,@PathVariable String approvalName, @PathVariable  Integer approvalId) {
         try {
-            approveService.update(defenseApproval, approvalName);
-            if(defenseApproval.getAdminIsAgree() == 2) {
-                defenseApprovalService.update(defenseApproval);
+            approveService.update(defenseApproval, approvalName, approvalId);
+            defenseApprovalService.update(defenseApproval);
+            if(defenseApproval.getAdminIsAgree() == 3) {
                 // 更新工作流程， 因为申请时已经判断前面都完成了，因此只需要更新就好
-                boolean result = workFlowService.assuredDefenseApprovalAndAllowDownload(defenseApproval.getId());
+                boolean result = workFlowService.assuredDefenseApproval(defenseApproval.getId());
                 if (!result) {
                     throw new Exception("确认盲审审核信息失败");
                 }

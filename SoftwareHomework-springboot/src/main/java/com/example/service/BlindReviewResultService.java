@@ -10,6 +10,8 @@ public interface BlindReviewResultService {
 
     void update(BlindReviewResult blindReviewResult);
 
+    boolean exist(Long id);
+
     void insert(BlindReviewResult blindReviewResult);
     List<BlindReviewResult> findAllBlindReviewResult();
 }
