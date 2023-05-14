@@ -46,7 +46,9 @@ public class BlindReviewResultController {
             blindReviewResultService.update(blindReviewResult);
             blindReviewService.update(blindReviewResult.getId(), blindReviewResult.getApprovalStatus());
             approveService.update(blindReviewResult, approvalName, approvalId);
-            workFlowService.assuredBlindReviewResult(blindReviewResult.getId());
+            if(blindReviewResult.getApprovalStatus() == 3) {
+                workFlowService.assuredBlindReviewResult(blindReviewResult.getId());
+            }
             return SendMessage.send(null, StaticValue.ACCPET_CODE, "操作成功");
         }catch (Exception e) {
             return SendMessage.send(null, StaticValue.ERROR_CODE, e.getMessage());
