@@ -43,6 +43,16 @@ public class StudentManagement {
     @ApiModelProperty(value = "权限")
     private Integer rid;
 
+    // 第几届学生
+    @Column(name = "level", type = MySqlTypeConstant.INT, defaultValue = "22")
+    @ApiModelProperty(value = "第几届学生", notes = "默认为22")
+    private Integer level;
+
+    // 预毕业日期
+    @Column(name = "date", type = MySqlTypeConstant.VARCHAR, defaultValue = "2025-06-22", length = 30)
+    @ApiModelProperty(value = "预毕业日期", notes = "格式为YYYY-MM-DD,默认为2025-06-22")
+    private String date;
+
     @Column(name = "defense_score", type = MySqlTypeConstant.FLOAT, defaultValue = "0.0")
     @ApiModelProperty(value = "答辩成绩")
     private Float defenseScore;

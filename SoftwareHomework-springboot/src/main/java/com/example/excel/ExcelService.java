@@ -37,6 +37,8 @@ public class ExcelService {
             userInfo.setMajor(studentManagement.getMajor());
             userInfo.setName(studentManagement.getName());
             userInfo.setSex(studentManagement.getSex());
+            userInfo.setLevel(studentManagement.getLevel());
+            userInfo.setDate(studentManagement.getDate());
 
             userInfoMapper.insert(userInfo);
         }
