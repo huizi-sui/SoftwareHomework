@@ -42,12 +42,14 @@ public class WorkFlowController {
             if(!result) {
                 throw new Exception("前面操作未完成，不允许下载");
             }
+            if(!workFlowService.findIfAllowDownIsTrue(id)) {
+                // 添加答辩成绩提交审批, 只触发一次
+                approveService.add(id);
+            }
             result = workFlowService.assuredAllowDownload(id);
             if(!result) {
                 throw new Exception("操作失败");
             }
-            // 添加答辩成绩提交审批
-            approveService.add(id);
             return SendMessage.send(null, StaticValue.ACCPET_CODE, "操作成功");
         }catch (Exception e) {
             return SendMessage.send(null, StaticValue.ERROR_CODE, e.getMessage());

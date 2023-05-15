@@ -227,4 +227,14 @@ public class WorkFlowServiceImpl implements WorkFlowService {
         }
         return workFlow;
     }
+
+    @Override
+    public boolean findIfAllowDownIsTrue(Long id) {
+        WorkFlow workFlow = workFlowMapper.selectByPrimaryKey(id);
+        if(workFlow.getAllowDownload() == 2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -38,5 +38,7 @@ public interface WorkFlowService {
 
     boolean findAllowDownloadPreviewAssured(Long id);
 
+    boolean findIfAllowDownIsTrue(Long id);
+
     WorkFlow findById(Long id);
 }
