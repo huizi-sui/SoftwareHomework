@@ -49,6 +49,7 @@ public class BlindReviewServiceImpl implements BlindReviewService {
     public void update(BlindReview blindReview) {
         BlindReview exist = blindReviewMapper.selectByPrimaryKey(blindReview.getId());
         // 盲审中或者是盲审通过
+        System.out.println(exist);
         if(exist.getApprovalStatus() == 1 || exist.getApprovalStatus() == 3) {
             return;
         }
